@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import 'source-map-support/register'
 import { CreateTodoRequest } from '../../requests/CreateTodoRequest'
-import { createToDo } from '../../helpers/todos'
+import { createToDo } from '../../businessLogic/businessLogic'
 
 export const handler =
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {

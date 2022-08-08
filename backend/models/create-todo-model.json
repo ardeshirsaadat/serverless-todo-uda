@@ -3,9 +3,10 @@
   "title": "group",
   "type": "object",
   "properties": {
-    "name": {
-      "type": "string"
-    },
+    "name": {      
+      "type": "string",
+      "minLength": 3    
+    },  
     "dueDate": {
       "type": "string"
     }

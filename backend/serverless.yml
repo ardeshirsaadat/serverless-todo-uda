@@ -152,7 +152,7 @@ resources:
         Name: 'request-body-validator'
         RestApiId:
           Ref: ApiGatewayRestApi
-        ValidateRequestBody: false
+        ValidateRequestBody: true
         ValidateRequestParameters: false
 
     TodosDynamoDBTable:
