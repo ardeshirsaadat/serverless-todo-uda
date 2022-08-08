@@ -20,7 +20,7 @@ export const handler =
       'Access-Control-Allow-Credentials': true
     },
     body: JSON.stringify({
-      ...newTodoItem
+      item:newTodoItem
     })
   } 
   }

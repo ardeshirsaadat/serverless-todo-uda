@@ -1,5 +1,5 @@
 import { ToDoAccess } from './todosAcess'
-import { AttachmentUtils } from './attachmentUtils';
+import { attachmentUtils } from './attachmentUtils';
 import { TodoItem } from '../models/TodoItem'
 import { CreateTodoRequest } from '../requests/CreateTodoRequest'
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
@@ -10,11 +10,11 @@ import { TodoUpdate } from '../models/TodoUpdate';
 //Implement businessLogic
 
 const todosAcess = new ToDoAccess()
-export const s3Access = new AttachmentUtils()
+export const s3Access = new attachmentUtils()
 
 export async function getAllToDo(userId:string): Promise<TodoItem[]> {
 
-    return await todosAcess.getAllToDos(userId)
+    return await todosAcess.getAllToDos(userId) as TodoItem[]
 }
 
 export async function createToDo(
@@ -32,8 +32,8 @@ export async function createToDo(
     name: createToDoRequest.name,
     dueDate: createToDoRequest.dueDate,
     done: false,
-    attachmentUrl: s3Access.obtainS3AttachmentURL(todoId)
-  })
+    attachmentUrl: await s3Access.generateUrl(todoId)
+  }) as TodoItem
 }
 
 
@@ -57,6 +57,7 @@ export async function deleteToDo(
     ){
         return await todosAcess.deleteTodo(userId,todoId)  
     }
-           
 
-
+export async function presignedUrl(todoId){
+  return await s3Access.signedUrl(todoId)
+} 

@@ -43,7 +43,7 @@ export class ToDoAccess {
         Item: {...todo}
       }).promise()
   
-      return todo
+      return todo as TodoItem
     }
 
     async updateToDo(userId: string, todoId: string, updatedTodo: TodoUpdate) {
@@ -77,10 +77,30 @@ export class ToDoAccess {
     
         
       }
+    
+     
+    
+      async getTodoItem(todoId: string,userId:string): Promise<TodoItem> {
+        logger.info(`Getting todo ${todoId} from ${this.todoTable}`)
+    
+        const result = await this.docClient.get({
+          TableName: this.todoTable,
+          Key: {
+            userId: userId,
+            todoId: todoId
+          }
+        }).promise()
+    
+        const item = result.Item
+    
+        return item as TodoItem
+      }  
+    }
 
 
 
-  }
+
+  
   
   function createDynamoDBClient() {
     if (process.env.IS_OFFLINE) {
