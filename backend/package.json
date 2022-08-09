@@ -29,6 +29,6 @@
     "typescript": ">=3.8.0",
     "webpack": "^4.29.6"
   },
-  "author": "Ivan Mushketyk",
+  "author": "Ardeshir Saadat",
   "license": "MIT"
 }
